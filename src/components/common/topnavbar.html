@@ -1,0 +1,73 @@
+<div class="header-navbar-fixed row">
+    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0;height: 61px;">
+        <div class="navbar-header" style="float: left;">
+            <a href="#menu-toggle" ng-click="resizeForToggle()" class="navbar-minimalize minimalize-styl-2 btn btn-primary " id="menu-toggle"><i class="fa fa-bars"></i></a>
+  
+        </div>
+        <div class="btn-group" style="float: right;margin-right: 30px;">
+                <button class="navbar-minimalize minimalize-styl-2 btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img class="img-avatar" src="../../assets/images/default_family1.png" style="height: 25px;padding-right: 10px;" alt="">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" style="left: auto;">
+                    <li class="dropdown-header">欢迎，<font color="#333333">{{currentUser.username}}&nbsp; </font></li>
+
+                    <li class="divider"></li>
+                
+                    <li>
+                        <a tabindex="-1" ng-click="changePassword()">
+                            <i class="fa fa-key pull-right" aria-hidden="true" style="padding-top: 8px;"></i> 修改密码
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+                    <li>
+                        <a tabindex="-1" style="padding-top: 8px;" ng-click="logout()">
+                            <i class="fa fa-sign-out pull-right" aria-hidden="true" style="padding-top: 8px;"></i>退出账户
+                        </a>
+                    </li>
+                </ul>
+        </div>
+      
+    </nav>
+</div>
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+
+        var mh = $("#mh"),
+            zx = $('#zx'),
+            temp = $('#temp'),
+            yj = $('#yj');
+
+
+        if (mh.length > 0) {
+            setTimeout(function () {
+                mh.highcharts().reflow();
+            },600);
+        }
+        if (zx.length > 0) {
+            setTimeout(function () {
+                zx.highcharts().reflow();
+            },600);
+        }
+        if (temp.length > 0) {
+            setTimeout(function () {
+                temp.highcharts().reflow();
+            },600);
+        }
+        if (yj.length > 0) {
+            setTimeout(function () {
+                yj.highcharts().reflow();
+            },600);
+        }
+
+        console.log("window want to resize");
+    });
+
+    function resizeChart() {
+        console.log( "$(\".ibox-content\").width()"  + $(".ibox-content").width() );
+    }
+</script>

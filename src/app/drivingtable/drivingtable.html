@@ -1,0 +1,107 @@
+<div class="row wrapper border-bottom bg-gray-lighter page-heading">
+    <div class="col-lg-2" style="float:left">
+        <h2 ng-show="location" class="second-header">行车报表</h2>
+        <h2 ng-hide="location" class="second-header">最后一次过车</h2>
+    </div>
+    <div class="col-lg-2"  style="float:right">
+        <md-button class="md-raised" ng-click="exportData()"
+                   ng-disabled="formSearch.isLoading || !formSearch.isLoaded"
+                   style="margin-top: 14px;float:right;">报表导出
+        </md-button>
+    </div>
+</div>
+<div class="real-content wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <form role="form" name="myForm">
+                    <div class="col-md-10 col-md-offset-1" ng-include src="'components/alert/alert.html'"></div>
+                </form>
+
+                <div class="ibox-content main-dialog-box" style="margin-top: 20px;border-radius: 16px;background: rgb(255,255,255);padding: 0px 0px 0px 0px;">
+                    <div class="text-center" ng-show="formSearch.isLoading">
+                        <img src="assets/images/loading.gif" />
+                    </div>
+                    <div class="table-responsive" ng-show="formSearch.isLoaded && !formSearch.isLoading">
+                        <table class="footable-driving-table footable table table-stripped">
+                            <thead>
+                                <tr>
+                                    <th>车号</th>
+                                    <th>磨损</th>
+                                    <th>中心偏移</th>
+                                    <th>温度</th>
+                                    <th>羊角</th>
+                                    <th>时间</th>
+                                    <th>状态</th>
+
+                                    <th>图片</th>
+                                    <th>视频</th>
+                                    <th>报表</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="record in reportRecords">
+                                    <td>{{record.trainId}}</td>
+                                    <td ng-class="{ redState : record.mhMinStatus == 2,
+                                                 orangeState : record.mhMinStatus ==1}">{{record.mhMin}}</td>
+                                    <td ng-class="{ redState : record.zxmaxStatus == 2,
+                                                 orangeState : record.zxmaxStatus ==1}">{{record.zxmaxValue}}</td>
+                                    <td ng-class="{ redState : record.tempmaxStatus == 2,
+                                                 orangeState : record.tempmaxStatus ==1}">{{record.tempmaxValue}}</td>
+                                    <td ng-class="{ redState : record.yjColor == 2}">{{record.yjNum}}</td>
+                                    <td>{{record.trainDate}}</td>
+                                    <td>
+                                        <h3 ng-repeat="trainstate in record.trainState" style="padding: 0;margin: 0 0 0 0;font-size: 13px;font-weight: 300;"
+                                            ng-class="{ redState : trainstate.trainStateColor == 2,
+                                                        orangeState : trainstate.trainStateColor == 1}">
+                                            {{trainstate.trainStateStr}}</h3>
+                                    </td>
+                                    </td>
+
+                                    <td>
+                                        <a class="fa fa-image" aria-hidden="true" ng-click="openImageDialog(record.trainOnlyId)"></a>
+                                    </td>
+                                    <td>
+                                        <a class="fa fa-video-camera" aria-hidden="true" ng-click="openVideoDialog(record.trainOnlyId, record.trainVideo)"></a>
+                                    </td>
+                                    <td>
+                                        <a class="fa fa-table" aria-hidden="true" ng-click="openDetailDialog(record.trainOnlyId,record.trainId,record.trainState,record.trainDate)"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <select class="pull-left custom-pagesize form-control" ng-change="onChange()" ng-model='pagination.pageSize' ng-options='pageSize.value as pageSize.name for pageSize in pageSizes'></select>
+                                    </td>
+                                    <td colspan="13">
+                                        <ul class="custom-pagination pull-right">
+                                            <li ng-class="{ disabled : pagination.current == 1 }">
+                                                <a href="" ng-click="setCurrent(1)">&laquo;</a>
+                                            </li>
+                                            <li ng-class="{ disabled : pagination.current == 1 }" class="ng-scope">
+                                                <a href="" ng-click="setCurrent(pagination.current - 1)" class="ng-binding">‹</a>
+                                            </li>
+                                            <li ng-repeat="pageNumber in pages track by $index" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+                                                <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+                                            </li>
+
+                                            <li ng-class="{ disabled : pagination.current == pagination.totalPages }" class="ng-scope">
+                                                <a href="" ng-click="setCurrent(pagination.current + 1)" class="ng-binding">›</a>
+                                            </li>
+                                            <li ng-class="{ disabled : pagination.current == pagination.totalPages }">
+                                                <a href="" ng-click="setCurrent(pagination.totalPages)">&raquo;</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

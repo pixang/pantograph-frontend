@@ -1,0 +1,43 @@
+<div class="inmodal">
+    <div class="modal-header" style="padding:14px"></div>
+    <div class="modal-body">
+        <div class="row">
+            <form role="form" name="userForm">
+                <div class="col-md-12" ng-include src="'components/alert/alert.html'"></div>
+                <div class="form-group">
+                    <label>姓名</label>
+                    <input ng-model="form.name" type="text" class="form-control" disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input ng-model="form.username" type="text" class="form-control" disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label>用户权限</label>
+                    <select class="form-control" ng-model="form.userrole" ng-disabled="form.isLoading || currentUserRole == 0">
+                        <option value="0">普通用户</option>
+                        <option value="1">管理员</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>用户状态</label>
+                    <select class="form-control" ng-model="form.userstate" ng-disabled="form.isLoading || currentUserRole == 0">
+                        <option value="0">允许用户</option>
+                        <option value="1">禁止用户</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <md-button type="button" class="md-raised btn btn-white" ng-click="cancel()" ng-disabled="form.isLoading">
+            关闭
+        </md-button>
+        <md-button type="button" class="md-raised md-primary btn btn-primary" ng-click="saveUser()" ng-disabled="!userForm.$dirty || form.isLoading">
+            保存
+        </md-button>
+    </div>
+    <div style="text-align:center;position:absolute;top:65px;left:0;width:100%;height:100%;zIndex:1;" ng-show="form.isLoading">
+        <img src="assets/images/loading.gif" />
+    </div>
+</div>

@@ -1,0 +1,127 @@
+@media (min-width: 768px) {
+
+  #page-wrapper {
+    overflow-y: hidden;
+    position: inherit;
+    margin-left: 220px;
+    height: 100%;
+    // min-height: 1200px;
+    transition: all 0.5s ease;
+  }
+  .header-navbar-fixed {
+    position: fixed;
+    top: 0;
+    left:235px;
+    right: 0;
+    z-index: 1030;
+    min-width: 320px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    transition: all 0.5s ease;
+  }
+  .navbar-top-links .dropdown-messages,
+  .navbar-top-links .dropdown-tasks,
+  .navbar-top-links .dropdown-alerts {
+    margin-left: auto;
+  }
+
+  #wrapper {
+    padding-left: 0;
+  }
+
+  #wrapper.toggled #page-wrapper {
+    position: absolute;
+    margin-left: 0px;
+    transition: all 0.5s ease;
+  }  
+  #wrapper.toggled .header-navbar-fixed {
+    position: fixed;
+    top: 0;
+    left:15px;
+    right: 0;
+    z-index: 1030;
+    min-width: 320px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    transition: all 0.5s ease;
+
+  }
+  #menu-toggle {
+    
+  }
+}
+
+
+@media (max-width: 767px) {
+  #wrapper.toggled #page-wrapper {
+    position: absolute;
+    margin-left: 220px;
+    transition: all 0.5s ease;
+  }
+  #page-wrapper {
+    width:100%;
+    overflow-y: hidden;
+  }
+
+  .header-navbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 6px;
+    right: 0;
+    z-index: 1030;
+    min-width: 320px;
+  }
+  // main page column change when in small windows
+  .table-responsive {
+    width:auto;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 0px solid #dddddd;
+  }
+
+  .navbar-right {
+      float: right;
+      float: right !important;
+      margin-right: -25px;
+  }
+
+ }
+
+@media (max-width: 350px) {
+
+  .timeline-item .date {
+    text-align: left;
+    width: 110px;
+    position: relative;
+    padding-top: 30px;
+  }
+
+  .timeline-item .date i {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    padding: 5px;
+    width: 30px;
+    text-align: center;
+    border: 1px solid @border-color;
+    background: #f8f8f8;
+  }
+
+  .timeline-item .content {
+    border-left: none;
+    border-top: 1px solid @border-color;
+    padding-top: 10px;
+    min-height: 100px;
+  }
+
+  .nav.navbar-top-links li.dropdown {
+    display: none;
+  }
+
+  .ibox-tools {
+    float: none;
+    text-align: left;
+    display: inline-block;
+  }
+
+}
+

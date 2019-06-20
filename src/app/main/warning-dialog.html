@@ -1,0 +1,38 @@
+<div class="inmodal">
+  <div class="modal-header" style="padding:14px"></div>
+  <div class="modal-body">
+
+    <div class="row main-dialog-content" ng-show="!form.isLoading">
+      <div class="col-md-12" ng-include src="'components/alert/alert.html'"></div>
+
+      <div class="col-md-12 main-dialog-father-margin">
+        <div class="table-responsive" ng-show="!form.isLoaded">
+          <table class="footable-for-warning footable table table-stripped toggle-arrow-tiny">
+            <thead>
+              <tr>
+                <th>车号</th>
+                <th>行车日期</th>
+                <th>故障记录</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="animate-repeat">
+                <td>{{warningRecords.trainId}}</td>
+                <td>{{warningRecords.trainDate}}</td>
+                <td>{{warningRecords.faultType}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <md-button class="md-raised" ng-click="cancel()" ng-disabled="form.isLoading">
+      关闭
+    </md-button>
+  </div>
+  <div style="text-align:center;position:absolute;top:40px;left:0;width:100%;height:100%;zIndex:1;" ng-show="form.isLoading">
+    <img src="assets/images/loading.gif" />
+  </div>
+</div>

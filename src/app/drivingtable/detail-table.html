@@ -1,0 +1,64 @@
+<div class="inmodal">
+    <div class="modal-header" style="padding:14px"></div>
+    <div class="modal-body">
+
+        <div class="col-md-12" ng-include src="'components/alert/alert.html'"></div>
+
+        <div class="row main-dialog-content" ng-show="!form.isLoading && form.isLoaded">
+
+            <div class="col-md-12 main-dialog-head">
+                <div class="col-md-5">
+                    <div>
+                        <h3 style="padding: 0;margin: 0 0 4px 0;font-size: 20px;font-weight: 500;">
+                            详细数据</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="table-responsive" ng-show="!form.isLoading && form.isLoaded" style="background-color: white;border-radius: 8px;">
+                    <table class="footable-for-dialog footable table table-stripped toggle-arrow-tiny">
+                        <thead>
+                            <tr>
+                                <th>受电弓</th>
+                                <th>滑板1</th>
+                                <th>滑板2</th>
+                                <th>中心偏移</th>
+                                <th>温度</th>
+                                <th>左羊角</th>
+                                <th>右羊角</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="animate-repeat" ng-repeat="record in detailRecords">
+                                <td>{{record.gnum}}</td>
+                                <td ng-class="{ redState : record.onemhStatus == 2,
+                                             orangeState : record.onemhStatus ==1}">{{record.onemhValue}}</td>
+                                <td ng-class="{ redState : record.twomhStatus == 2,
+                                             orangeState : record.twomhStatus == 1}">{{record.twomhValue}}</td>
+                                <td ng-class="{ redState : record.zxStatus == 2,
+                                             orangeState : record.zxStatus == 1}">{{record.zxValue}}</td>
+                                <td ng-class="{ redState : record.tempStatus == 2,
+                                             orangeState : record.tempStatus == 1}">{{record.tempValue}}</td>
+                                <td>{{record.lyjFlag}}</td>
+                                <td>{{record.ryjFlag}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <md-button class="md-raised" ng-click="cancel()" ng-disabled="form.isLoading">
+            关闭
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="exportToCsv()" ng-disabled="!form.isLoaded">
+            下载报表
+        </md-button>
+    </div>
+    <div style="text-align:center;position:absolute;top:40px;left:0;width:100%;height:100%;zIndex:1;" ng-show="form.isLoading">
+        <img src="assets/images/loading.gif" />
+    </div>
+</div>
+

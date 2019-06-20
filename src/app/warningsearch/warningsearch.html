@@ -1,0 +1,205 @@
+<div class="row wrapper border-bottom bg-gray-lighter page-heading">
+    <div class="col-lg-10">
+        <h2 class="second-header">报警报表查询</h2>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="real-content wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title main-dialog-box" style="padding-top: 30px;border-radius: 13px;">
+                    <div class="row">
+                        <form role="form" name="myForm">
+                            <div class="col-md-10 col-md-offset-1" ng-include src="'components/alert/alert.html'"></div>
+                            <div class="form-group col-md-4">
+                                <div layout="row" ng-cloak class="md-inline-form">
+                                    <mdp-date-picker required="" mdp-placeholder="起始时间"
+                                                     ng-disabled="formSearch.isLoading"
+                                                     ng-model="formSearch.startTime"></mdp-date-picker>
+                                    <mdp-time-picker required="" mdp-auto-switch="true"
+                                                     ng-disabled="formSearch.isLoading"
+                                                     ng-model="formSearch.startTime"></mdp-time-picker>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div layout="row" ng-cloak class="md-inline-form">
+                                    <mdp-date-picker required="" mdp-placeholder="终止时间"
+                                                     ng-disabled="formSearch.isLoading"
+                                                     ng-model="formSearch.endTime"></mdp-date-picker>
+                                    <mdp-time-picker required="" mdp-auto-switch="true"
+                                                     ng-disabled="formSearch.isLoading"
+                                                     ng-model="formSearch.endTime"></mdp-time-picker>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="float: right;">
+                                <md-button class="md-raised" ng-click="search()" ng-disabled="formSearch.isLoading"
+                                           style="margin-left: 10px;min-width: 70px;height: 20px;margin-top: 2px;">搜索
+                                </md-button>
+                                <md-button class="md-raised" ng-click="exportData()"
+                                           ng-disabled="formSearch.isLoading || !formSearch.isLoaded"
+                                           style="margin-left: 10px;min-width: 70px;height: 20px;margin-top: 2px;">报表
+                                </md-button>
+                            </div>
+                            <div class="form-group col-md-12" style="margin-left: 10px">
+                                <div class="col-md-4">
+                                    <div layout="row" ng-cloak class="md-inline-form">
+                                        <md-input-container class="md-block" style="width: 60px;">
+                                            <label>线路</label>
+                                            <input ng-model="line" disabled>
+                                        </md-input-container>
+
+                                        <div style="width: 125px;padding-left: 4px;">
+                                            <md-autocomplete  flex="" required="" ng-model="formSearch.trainId"
+                                                             md-input-name="autocompleteTrainId" md-min-length="0"
+                                                             md-selected-item="selectedTrainId"
+                                                             md-selected-item-change="selectedTrainIdChange(trainId)"
+                                                             md-search-text="inputTrainId"
+                                                             md-search-text-change="searchInputChange(inputTrainId)"
+                                                             md-items="trainId in querySearch(inputTrainId)"
+                                                             md-item-text="trainId" md-floating-label="列车号"
+                                                             md-require-match>
+                                                <md-item-template>
+                                                    <span md-highlight-text="inputTrainId">{{trainId}}</span>
+                                                </md-item-template>
+                                                <div ng-messages="myForm.autocompleteTrainId.$error" ng-if="myForm.autocompleteTrainId.$touched">
+                                                    <div ng-message="required">此项<b>必需</b>填写</div>
+                                                    <div ng-message="md-require-match">该车号不存在</div>
+                                                </div>
+                                            </md-autocomplete>
+                                        </div>
+
+                                        <md-input-container  id="carriage" style="min-width: 100px;padding-left: 4px;">
+                                            <label>弓号</label>
+                                            <md-select required="" ng-disabled="formSearch.isLoading"
+                                                       name="carriage"
+                                                       ng-model="formSearch.archNum">
+                                                <md-option ng-repeat="archNum in archNums" ng-value="archNum.value">
+                                                    {{archNum.name}}
+                                                </md-option>
+                                            </md-select>
+                                            <div class="errors" ng-messages="myForm.carriage.$error">
+                                                <div ng-message="required">车厢号不能为空</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="margin-top: 6px;" ng-cloak>
+                                    <div layout="row" ng-cloak>
+                                        <div ng-repeat="item in items_1" style="padding-right: 30px;">
+                                            <md-checkbox ng-checked="exists_1(item)" ng-click="toggle_1(item)">
+                                                {{ item }} </span>
+                                            </md-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div layout="row" ng-cloak>
+                                        <div ng-repeat="item in items" style="padding-right: 30px;">
+                                            <md-checkbox ng-checked="exists(item)" ng-click="toggle(item)">
+                                                {{ item }} </span>
+                                            </md-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="ibox-content main-dialog-box"
+                     style="margin-top: 20px;border-radius: 16px;background: rgb(255,255,255);padding: 0px 0px 0px 0px;">
+                    <div class="text-center" ng-show="formSearch.isLoading">
+                        <img src="assets/images/loading.gif"/>
+                    </div>
+                    <div ng-if="formSearch.isLoaded && !formSearch.isLoading">
+                        <table class="footable-report-search footable table table-stripped toggle-arrow-tiny">
+                            <thead>
+                            <tr>
+                                <th>车号</th>
+                                <th>弓号</th>
+                                <th ng-show="formSearch.selectType.indexOf(1) != -1">滑板1</th>
+                                <th ng-show="formSearch.selectType.indexOf(1) != -1">滑板1</th>
+                                <th ng-show="formSearch.selectType.indexOf(2) != -1">中心偏移</th>
+                                <th ng-show="formSearch.selectType.indexOf(3) != -1">温度</th>
+                                <th ng-show="formSearch.selectType.indexOf(4) != -1">左羊角</th>
+                                <th ng-show="formSearch.selectType.indexOf(4) != -1">右羊角</th>
+                                <th>状态</th>
+
+                                <th>时间</th>
+                                <th>图片</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="animate-repeat" ng-repeat="reportRecord in reportRecords">
+                                <td>{{reportRecord.trainId}}</td>
+                                <td>{{reportRecord.gnum}}</td>
+                                <td ng-class="{ redState : reportRecord.onemhStatus == 2,
+                                             orangeState : reportRecord.onemhStatus ==1}"
+                                    ng-show="formSearch.selectType.indexOf(1) != -1">{{reportRecord.onemhValue}}</td>
+
+                                <td ng-class="{ redState : reportRecord.twomhStatus == 2,
+                                             orangeState : reportRecord.twomhStatus ==1}"
+                                    ng-show="formSearch.selectType.indexOf(1) != -1">{{reportRecord.twomhValue}}</td>
+                                <td ng-class="{ redState : reportRecord.zxStatus == 2,
+                                             orangeState : reportRecord.zxStatus ==1}"
+                                    ng-show="formSearch.selectType.indexOf(2) != -1">{{reportRecord.zxValue}}</td>
+                                <td ng-class="{ redState : reportRecord.tempStatus == 2,
+                                             orangeState : reportRecord.tempStatus ==1}"
+                                    ng-show="formSearch.selectType.indexOf(3) != -1">{{reportRecord.tempValue}}</td>
+
+                                <td ng-show="formSearch.selectType.indexOf(4) != -1"
+                                    ng-class="{ redState : reportRecord.lyjFlagColor == 2}">{{reportRecord.lyjFlag}}</td>
+                                <td ng-show="formSearch.selectType.indexOf(4) != -1"
+                                    ng-class="{ redState : reportRecord.ryjFlagColor == 2}">{{reportRecord.ryjFlag}}</td>
+                                <td>
+                                <h3 ng-repeat="trainstate in reportRecord.trainState" style="padding: 0;margin: 0 0 0 0;font-size: 13px;font-weight: 300;"
+                                    ng-class="{ redState : trainstate.trainStateColor == 2,
+                                        orangeState : trainstate.trainStateColor == 1}">
+                                    {{trainstate.trainStateStr}}</h3>
+                                </td>
+                                <td>{{reportRecord.trainDate}}</td>
+                                <td>
+                                    <a class="fa fa-image" aria-hidden="true" ng-click="openImageDialog(reportRecord.trainOnlyId,reportRecord.gnum )"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td>
+                                    <select class="pull-left custom-pagesize form-control" ng-change="onChange()"
+                                            ng-model='pagination.pageSize'
+                                            ng-options='pageSize.value as pageSize.name for pageSize in pageSizes'></select>
+                                </td>
+                                <td colspan="13">
+                                    <ul class="custom-pagination pull-right">
+                                        <li ng-class="{ disabled : pagination.current == 1 }">
+                                            <a href="" ng-click="setCurrent(1)">&laquo;</a>
+                                        </li>
+                                        <li ng-class="{ disabled : pagination.current == 1 }" class="ng-scope">
+                                            <a href="" ng-click="setCurrent(pagination.current - 1)" class="ng-binding">‹</a>
+                                        </li>
+                                        <li ng-repeat="pageNumber in pages track by $index"
+                                            ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+                                            <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+                                        </li>
+
+                                        <li ng-class="{ disabled : pagination.current == pagination.totalPages }"
+                                            class="ng-scope">
+                                            <a href="" ng-click="setCurrent(pagination.current + 1)" class="ng-binding">›</a>
+                                        </li>
+                                        <li ng-class="{ disabled : pagination.current == pagination.totalPages }">
+                                            <a href="" ng-click="setCurrent(pagination.totalPages)">&raquo;</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

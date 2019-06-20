@@ -1,0 +1,19 @@
+<div class="inmodal">
+    <video class="video-js vjs-default-skin" controls autoplay preload="auto" width="640" height="264"
+            data-setup='{}'>
+        <source ng-src="{{src | trustUrl}}" type='video/mp4'>
+
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+
+    <!--<div class="tiff-expand" style="height: 800px;width: 800px;box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);">-->
+    <!--</div>-->
+</div>
+
+<script>
+    console.log(JSON.stringify(document.querySelector('video')));
+    document.querySelector('video').playbackRate = 0.2;
+</script>

@@ -1,0 +1,196 @@
+<div id="page-container" class="auth-content white-bg"
+    style="margin: 0 auto;margin-top: -18px;width: 100%;height: 100%;min-width: 320px;">
+    <header id="header-navbar" class="content-mini content-mini-full login-header-navbar">
+        <div class="content-boxed" style="margin: 0 auto;width: 100%;max-width: 1280px;">
+            <ul class="pull-right" style="margin: 0;padding: 0;list-style: none;">
+                <li class="pull-left">
+                    <a ng-click="goToLoginPage()" class="btn btn-warning login-signin-button">登 录</a>
+                </li>
+                <li class="pull-left" style="margin-left: 12px;">
+                    <a ng-click="goToRegisterPage()" class="btn btn-success login-signup-button">注 册</a>
+                </li>
+            </ul>
+            <ul class="pull-left" style="list-style: none;">
+                <li class="header-content">
+                    <a class="h5" href="" style="padding: 0 12px;display: block;font-weight: 600;">
+                        <i class="fa fa-subway" aria-hidden="true" style="color: #a6d2d6;padding-right: 10px;"></i>
+                        <span class="h5 font-w600 text-white hidden-xs hidden-sm">广州地铁</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="bg-image train-background" style="margin-top: -100px;">
+            <div class="bg-primary-dark-op" style="background-color: rgba(62, 74, 89, 0.83);height: 296px;">
+                <section class="content content-full content-boxed"
+                    style="padding-top: 100px;max-width: 1280px;padding-bottom: 30px;margin: 0 auto;width: 100%;">
+                    <div class="push-100-t push-50 text-center"
+                        style="margin-top: 100px !important; margin-bottom: 50px !important;">
+                        <h1 ng-show="showLogin" class="h2 text-white push-10 animated fadeInDown" data-toggle="appear"
+                            data-class="animated fadeInDown"
+                            style="margin-bottom: 10px !important;color: #ffffff;color: #ffffff;">
+                            <b>成员登录</b>
+                        </h1>
+                        <h1 ng-show="!showLogin" class="h2 text-white push-10 animated fadeInDown" data-toggle="appear"
+                            data-class="animated fadeInDown"
+                            style="margin-bottom: 10px !important;color: #ffffff;color: #ffffff;">
+                            <b>用户注册</b>
+                        </h1>
+                        <br>
+                        <br>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="white-bg">
+            <section class="content content-boxed white-bg-content">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                    </div>
+                </div>
+                <div class="row items-push push-30-t push-30"
+                    style="margin-bottom: 30px !important;margin-top: 30px !important;">
+                    <div class="col-md-6 col-md-offset-3" style="margin-bottom: 30px;">
+                        <div class="logincontainer"
+                            style="margin: 40px auto 100px auto;padding: 0 10px;max-width: 500px;">
+                            <div class="col-md-10 col-md-offset-1" ng-include src="'components/alert/alert.html'"></div>
+                            <form ng-show="showLogin" role="form" class="form-horizontal ng-pristine ng-valid">
+                                <div class="form-group" style="margin-right: -15px;margin-left: -15px;">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary"
+                                            style="position: relative;margin: 10px 0 10px;">
+                                            <label for="username">用户名</label>
+                                            <input id="username" type="text" name="username" class="form-control"
+                                                ng-model="form.username" placeholder="输入用户名" autofocus=""
+                                                autocomplete="off" style="-webkit-appearance: none;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary">
+                                            <label for="inputPassword">密码</label>
+                                            <input id="inputPassword" type="password" name="password"
+                                                class="form-control" ng-model="form.password" placeholder="密码"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div ng-show='!form.isLoading' class="form-group" style="margin-top: 40px;">
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                                        <button id="loginButton" class="btn btn-block btn-primary" ng-click="login()">
+                                            <i class="fa fa-arrow-right pull-right"></i>登录</button>
+                                    </div>
+                                </div>
+                                <div ng-show='form.isLoading' class="form-group" style="margin-top: 40px;">
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                                        <button ng-disabed="true"
+                                            class="btn btn-block btn-primary btn btn-block btn-primary disabled">
+                                            <i class="fa fa-arrow-right pull-right"></i>登录中...</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form ng-show="!showLogin" role="form" class="form-horizontal ng-pristine ng-valid">
+                                <div class="form-group" style="margin-right: -15px;margin-left: -15px;">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary" style="position: relative;">
+                                            <label for="username">用户名</label>
+                                            <input type="text" name="username" class="form-control"
+                                                ng-model="formForRegister.username" placeholder="输入用户名" autofocus=""
+                                                style="-webkit-appearance: none;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary">
+                                            <label for="inputPassword">姓名</label>
+                                            <input type="text" name="name" class="form-control"
+                                                ng-model="formForRegister.name" placeholder="姓名" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary">
+                                            <label for="password1">密码</label>
+                                            <input id="password1" type="password" name="password1" class="form-control"
+                                                ng-model="formForRegister.password1" placeholder="密码"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary">
+                                            <label for="password2">确认密码</label>
+                                            <input id="password2" type="password" name="password2" class="form-control"
+                                                ng-model="formForRegister.password2" placeholder="密码"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div ng-show='!formForRegister.isLoading' class="form-group" style="margin-top: 40px;">
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                                        <button class="btn btn-block btn-primary" ng-click="signup()">
+                                            <i class="fa fa-arrow-right pull-right"></i>注册</button>
+                                    </div>
+                                </div>
+                                <div ng-show='formForRegister.isLoading' class="form-group" style="margin-top: 40px;">
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                                        <button class="btn btn-block btn-primary">
+                                            <i class="fa fa-arrow-right pull-right"></i>注册中...</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="bg-gray-lighter">
+            <section class="content content-full content-boxed content-boxed-belowed">
+                <div ng-show="showLogin" class="push-20-t push-20 text-center"
+                    style="margin-top: 20px !important;margin-bottom: 20px !important;">
+                    <h3 class="h4 push-20 animated fadeIn button-animation-1" data-toggle="appear">还没有注册账户？</h3>
+                    <a ng-click="goToRegisterPage()"
+                        class="btn btn-rounded btn-noborder btn-lg btn-success animated bounceIn button-animation-2"
+                        data-toggle="appear" data-class="animated bounceIn" href="">立即注册账户</a>
+                </div>
+
+                <div ng-show="!showLogin" class="push-20-t push-20 text-center"
+                    style="margin-top: 20px !important;margin-bottom: 20px !important;">
+                    <h3 class="h4 push-20 animated fadeIn button-animation-1" data-toggle="appear"> 已注册？</h3>
+                    <a ng-click="goToLoginPage()"
+                        class="btn btn-rounded btn-noborder btn-lg btn-success animated bounceIn button-animation-2"
+                        data-toggle="appear" data-class="animated bounceIn" href="">立即登陆账户</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-white" style="position:  fixed;bottom: 0;width: 100%;">
+        <div class="content content-boxed">
+            <div class="font-s12 push-20 clearfix">
+                <hr class="remove-margin-t">
+                <div class="pull-right">
+                    Crafted with
+                    <i class="fa fa-heart text-city"></i> by
+                    <a class="font-w600" href="">Mr Han</a>
+                </div>
+                <div class="pull-left">
+                    <a class="font-w600" href="">Mr Han</a> ©
+                    <span class="js-year-copy">2018-1</span> &nbsp; All rights reserved
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

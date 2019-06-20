@@ -1,0 +1,64 @@
+<div class="inmodal">
+    <div class="modal-header" style="padding:1px;border-bottom: none;"></div>
+    <div class="modal-body" style="padding:0 20px 0 20px">
+
+        <div class="col-md-12" ng-include src="'components/alert/alert.html'"></div>
+
+        <div class="row main-dialog-content " ng-show="!form.isLoading">
+            <md-content class="col-md-12">
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="one">
+                        <md-content id="galley_1" class="md-padding">
+                            <div class="col-lg-12">
+                                <div class="col-lg-4">
+                                    <img ng-click="openImgViewer(1)" ng-src="{{imageAddrs_1[0]}}" width="300" height="300" alt="受电弓光学图片" style="margin-right:20px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <img ng-click="openImgViewer(1)" ng-src="{{imageAddrs_1[1]}}" width="300" height="300" alt="受电弓光学图片" style="margin-right:20px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <img ng-click="openImgViewer(1)" ng-src="{{imageAddrs_1[2]}}" width="300" height="300" alt="受电弓光学图片">
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-top: 20px;">
+                                <div class="col-lg-4">
+                                    <img ng-click="openImgViewer(1)" ng-src="{{imageAddrs_1[3]}}" width="300" height="300" alt="受电弓光学图片" style="margin-right:20px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <img ng-click="openImgViewer(1)" ng-src="{{imageAddrs_1[4]}}" width="300" height="300" alt="受电弓光学图片" style="margin-right:20px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <img ng-click="openImgViewer(1)" ng-src="{{imageAddrs_1[5]}}" width="300" height="300" alt="受电弓光学图片">
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="four">
+                        <md-content class="md-padding">
+                            <div class="col-lg-12">
+                                <div id="tiff_0" class="tiff-img col-lg-4" ng-click="openTiffViewer(0)">
+                                </div>
+                                <div id="tiff_1" class="tiff-img col-lg-4" ng-click="openTiffViewer(1)">
+                                </div>
+                                <div id="tiff_2" class="tiff-img col-lg-4" ng-click="openTiffViewer(2)">
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <md-button class="md-raised" ng-click="cancel()" ng-disabled="form.isLoading">
+            关闭
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="exportToCsv()" ng-disabled="!form.isLoaded">
+            下载报表
+        </md-button>
+    </div>
+    <div style="text-align:center;position:absolute;top:40px;left:0;width:100%;height:100%;zIndex:1;" ng-show="form.isLoading">
+        <img src="assets/images/loading.gif" />
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div ng-if="showDashboard">
+    <div class="row wrapper border-bottom bg-gray-lighter page-heading">
+        <div class="col-lg-10">
+            <h2 class="second-header">系统页面</h2>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+
+    <div id="mainpage-content" class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title main-page-tips">
+                        <div class="row" style="margin-top: 5px;">
+                            <table class="col-lg-12 table-stripped">
+                                <tbody>
+                                    <tr class="animate-repeat">
+                                        <td style="padding-right: 200px;height: 37px;text-align: left;padding-left:30px">线路：
+                                            <span style="padding-right: 200px;height: 37px;text-indent: 40px;font-weight: 700;font-size: 20px;">
+                                                {{line}}号线
+                                            </span>
+                                        </td>
+
+                                        <td style="width: 39px;">
+                                            <a class="dashboard-icon downnormal"></a>
+                                        </td>
+                                        <td style="padding-right: 6px;text-align: left;">
+                                            <span>正常</span>
+                                        </td>
+                                        <td style="width: 39px;">
+                                            <a class="dashboard-icon downabnormal"></a>
+                                        </td>
+                                        <td style="
+                                padding-right: 6px;text-align: left;">
+                                            <span>预警</span>
+                                        </td>
+                                        <td style="width: 39px;">
+                                            <a class="dashboard-icon downearlywarning"></a>
+                                        </td>
+                                        <td style="
+                                padding-right: 6px;text-align: left;">
+                                            <span>报警</span>
+                                        </td>
+
+                                        <td style="width: 39px;">
+                                            <a class="dashboard-icon downwarning"></a>
+                                        </td>
+                                        <td style="
+                                padding-right: 6px;text-align: left;">
+                                            <span>异常</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="ibox-content" style="margin-top: 1px;border-radius: 10px;padding: 0px 0px 0px 0px;">
+
+                        <table style="padding-left: 0;padding-right: 0;float: left;">
+                            <tbody>
+                                <tr class="animate-repeat left-column-content" ng-repeat="trainInfo in trainsInfo">
+                                    <td style="width: 83px;">{{trainInfo.trainId}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-responsive" ng-show="!formSearch.isLoading">
+                            <table class="table" data-page-size="50">
+                                <tbody>
+                                    <tr class="animate-repeat" ng-repeat="trainInfo in trainsInfo" ng-init="outerIndex = $index">
+                                        <td style="opacity:1;width: 1px; height:47px;border-top: 0;border-bottom: 1px solid #e7eaec;"></td>
+                                        <td ng-repeat="trainOnly in trainInfo.trainDetail" ng-init="innerIndex = $index" style="width: 47px;border-top: 0;border-bottom: 1px solid #e7eaec;">
+                                            <a class="dashboard-icon" ng-click="openMainDialog(trainOnly.trainOnlyid,trainOnly.trainDirection)"
+                                               data-toggle="tooltip" ng-mouseover="timeShow(trainOnly.trainDate)" ng-class="{
+
+                                                 downnormal : trainOnly.trainStatus == 0,
+
+                                                 downabnormal : trainOnly.trainStatus == 2 || trainOnly.trainStatus == 4 || trainOnly.trainStatus == 6,
+
+                                                 downearlywarning : trainOnly.trainStatus == 1 || trainOnly.trainStatus == 3 || trainOnly.trainStatus == 5 || trainOnly.trainStatus == 7,
+
+
+                                                 downwarning: trainOnly.trainStatus == 8
+                                              }"></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--<div style="display:none;">-->
+                             <!--<audio  class="alarm" ng-src="{{data.url}}" style="display: none">您的浏览器不支持html5</audio><br/><br/>-->
+                             <!--<audio  class="device" src="../assets/images/device.wav" style="display: none">您的浏览器不支持html5</audio><br/><br/>-->
+                        <!--</div>-->
+
+                        <a ng-click="openCurrentdayDialog()">今日过车</a>
+                        <!--<a ng-click="testWarningDialog()">warning test</a>-->
+
+
+
+                    </div>
+
+                    <!-- table-responsive -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

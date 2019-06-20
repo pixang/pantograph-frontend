@@ -1,0 +1,171 @@
+<div class="row wrapper border-bottom bg-gray-lighter page-heading">
+    <div class="col-lg-10">
+        <h2 class="second-header">阈值设置</h2>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<div class="real-content wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title main-dialog-box" style="padding-top: 30px;border-radius: 13px">
+                      
+                    <div class="row">
+                        <form role="form" name="myForm">
+                            <div class="col-md-8 col-md-offset-2" ng-include src="'components/alert/alert.html'"></div>
+                          
+                            <div class="md-padding configuration-box" ng-cloak="" style="margin:auto;max-width: 1200px;">
+                                <fieldset class="standard">
+                                    <legend>预警值</legend>
+                                    <div ng-cloak class="layout-row">
+                                        <div class="col-md-3 configuration-table">
+                                            <md-input-container class="md-block" style="margin-top: 20px;">
+                                                <label>磨耗预警值</label>
+                                                <input ng-model="formForThreshold.mhWarn">
+                                            </md-input-container>
+                                        </div>
+                                       <div class="col-md-3 configuration-table">
+
+                                            <md-input-container class="md-block" style="margin-left: 20px;margin-top: 20px;">
+                                                <label>中心偏移预警值</label>
+                                                <input ng-model="formForThreshold.zxWarn">
+                                            </md-input-container>
+                                        </div>
+                                       <div class="col-md-3 configuration-table">
+
+                                            <md-input-container class="md-block" style="margin-left: 20px;margin-top: 20px;">
+                                                <label>温度预警值</label>
+                                                <input ng-model="formForThreshold.tempWarn">
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="md-padding configuration-box" ng-cloak=""  style="margin:auto;max-width: 1200px;margin-bottom: 30px;">
+                                    <fieldset class="standard">
+                                        <legend>报警值</legend>
+                                        <div ng-cloak class="layout-row">
+                                            <div class="col-md-3 configuration-table">
+                                                <md-input-container class="md-block" style="margin-top: 20px;">
+                                                    <label>磨耗报警值</label>
+                                                    <input ng-model="formForThreshold.mhAlarm">
+                                                </md-input-container>
+                                            </div>
+                                            <div class="col-md-3 configuration-table">
+
+                                                <md-input-container class="md-block" style="margin-left: 20px;margin-top: 20px;">
+                                                    <label>中心偏移报警值</label>
+                                                    <input ng-model="formForThreshold.zxAlarm">
+                                                </md-input-container>
+                                            </div>
+                                            <div class="col-md-3 configuration-table">
+
+                                                <md-input-container class="md-block" style="margin-left: 20px;margin-top: 20px;">
+                                                    <label>温度报警值</label>
+                                                    <input ng-model="formForThreshold.tempAlarm">
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                        </form>
+                    </div>
+                    <div class="layout-row configuration-footer" style="margin: auto;width: 237px;">
+
+                        <md-button  class="md-raised" ng-click="backFromConfigurationPage()" ng-disabed="formSearch.isLoading">
+                            关闭
+                        </md-button>
+                        <md-button  class="md-raised md-primary" ng-click="saveThresholdData()" ng-disabed="formSearch.isLoading">
+                            保存
+                        </md-button>
+                        <div class="text-center" ng-show="formSearch.isLoading" style="
+                        align-items: center;
+                        height: 20px;
+                        padding: 12px 3px 4px 1px;
+                                                    ">
+                                <img src="assets/images/loading.gif" style="height: 20px;width: 20px;"/>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- <div class="col-md-6">
+                                    <div ng-cloak class="layout-column">
+
+                                        <md-input-container class="md-block" style="width: 260px;">
+                                            <label>气隙高度下限预警值</label>
+                                            <input ng-model="line">
+                                        </md-input-container>
+                                        <md-input-container class="md-block" style="width: 260px;">
+                                            <label>气隙高度下限预警值</label>
+                                            <input ng-model="line" >
+                                        </md-input-container>
+                                        <md-input-container class="md-block" style="width: 260px;">
+                                            <label>温度上限预警值</label>
+                                            <input ng-model="line">
+                                        </md-input-container>
+                                        <md-input-container class="md-block" style="width: 260px;">
+                                            <label>修正值设置</label>
+                                            <input ng-model="line" disabled>
+                                        </md-input-container>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                        <div ng-cloak class="layout-columnm">
+    
+                                            <md-input-container class="md-block" style="width: 260px;">
+                                                <label>气隙高度下限预警值</label>
+                                                <input ng-model="line">
+                                            </md-input-container>
+                                            <md-input-container class="md-block" style="width: 260px;">
+                                                <label>气隙高度下限预警值</label>
+                                                <input ng-model="line">
+                                            </md-input-container>
+                                            <md-input-container class="md-block" style="width: 260px;">
+                                                <label>温度上限预警值</label>
+                                                <input ng-model="line">
+                                            </md-input-container>
+                                            <md-input-container class="md-block" style="width: 260px;">
+                                                <label>修正值设置</label>
+                                                <input ng-model="line">
+                                            </md-input-container>
+                                            <md-input-container class="md-icon-float md-icon-right md-block">
+                                                <label>Donation Amount</label>
+                                                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                                                <input ng-model="user.donation" type="number" step="0.01">
+                                                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+                                            </md-input-container>
+                                        </div>
+                                    </div> 
+                                </div>-->

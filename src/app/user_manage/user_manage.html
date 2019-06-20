@@ -1,0 +1,68 @@
+<div class="row wrapper border-bottom bg-gray-lighter page-heading">
+    <div class="col-lg-10">
+        <h2 class="second-header">用户管理</h2>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="real-content wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <form role="form" name="myForm">
+                    <div class="col-md-10 col-md-offset-1" ng-include src="'components/alert/alert.html'"></div>
+                </form>
+
+                <div class="ibox-content main-dialog-box" style="margin-top: 20px;border-radius: 16px;background: rgb(255,255,255);padding: 0px 0px 0px 0px;">
+                    <div class="text-center" ng-show="formSearch.isLoading">
+                        <img src="assets/images/loading.gif" />
+                    </div>
+                    <div class="table-responsive">
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="50">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>用户名</th>
+                                    <th>用户权限</th>
+                                    <th>用户状态</th>
+                                    <th data-sort-ignore="true">操作</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="animate-repeat" ng-repeat="user in users">
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.username}}</td>
+                                    <td>
+                                        <div ng-show="user.userrole == 0">
+                                            普通用户
+                                        </div>
+                                        <div ng-show="user.userrole == 1">
+                                            管理员
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div ng-show="user.userstate == 0">
+                                            允许用户
+                                        </div>
+                                        <div ng-show="user.userstate == 1">
+                                            禁止用户
+                                        </div>
+                                    </td>
+                                
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" ng-click="openEditDialog($index)">
+                                                更改用户
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
