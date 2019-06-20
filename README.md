@@ -20,8 +20,6 @@ gulp build
 gulp serve
 ```
 
-```npm test```
-
 ## Fallback instruction in case the npm scripts fail
 
 ### Install global dependencies
@@ -40,7 +38,3 @@ npm install
 ### Start the Application
 
 ```gulp serve```
-
-### Execute E2E Tests
-
-```gulp protractor```
