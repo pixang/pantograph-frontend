@@ -1,4 +1,3 @@
-[![CircleCI](https://circleci.com/gh/topcoder-platform/admin-app.svg?style=svg)](https://circleci.com/gh/topcoder-platform/admin-app)
 # metro-manage-app
 Support application
 
