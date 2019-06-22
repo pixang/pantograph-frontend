@@ -84,7 +84,6 @@ module.controller("DrivingTableController", ['$scope', '$state', '$rootScope', '
                     $scope.$broadcast('ReportDataUpdated');
                 },
                 function (err) {
-                    $alert.error("服务器出错", $scope);
                     $scope.formSearch.setLoading(false);
                 }
             )
@@ -244,11 +243,9 @@ module.controller("DrivingTableController", ['$scope', '$state', '$rootScope', '
 
 
         angular.element(document).ready(function () {
-            $rootScope.$broadcast("HideDashboard", "wusuowei");
+            $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
-
             $scope.search();
-
             $rootScope.$broadcast('ResizePage');
 
         });
@@ -308,12 +305,8 @@ module.controller('DetailDataController', [
                     $scope.$broadcast('DetailRecordUpdate');
                 },
                 function (err) {
-                    $timeout(function () {
-                        $alert.error(err.error, $scope);
-                        $scope.exception = true;
-
-                        $scope.form.setLoading(false);
-                    }, 1000);
+                    $scope.exception = true;
+                    $scope.form.setLoading(false);
                 }
             )
         };
@@ -431,11 +424,8 @@ module.controller('ArcImageController', [
                     $scope.$broadcast('DetailRecordUpdate');
                 },
                 function (err) {
-                    $timeout(function () {
-                        $alert.error(err.error, $scope);
-                        $scope.exception = true;
-                        $scope.form.setLoading(false);
-                    }, 1000);
+                    $scope.exception = true;
+                    $scope.form.setLoading(false);
                 })
         };
         $scope.imageAddrs = [];

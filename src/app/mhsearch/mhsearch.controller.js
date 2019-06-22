@@ -143,7 +143,6 @@ module.controller("MhSearchController", ['$scope', '$state', '$rootScope', '$tim
                     $scope.$broadcast('ReportDataUpdated');
                 },
                 function (err) {
-                    $alert.error("服务器出错", $scope);
                     $scope.formSearch.setLoading(false);
                 }
             )

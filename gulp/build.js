@@ -61,7 +61,6 @@ gulp.task('html', ['inject', 'partials'], function () {
       quotes: true
     }))
     .pipe(htmlFilter.restore())
-    .pipe(stripDebug())
     .pipe(gulp.dest(paths.dist + '/'))
     .pipe($.size({ title: paths.dist + '/', showFiles: true }));
 });
@@ -83,7 +82,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('fontawesome', function () {
-    return gulp.src('node_modules/font-awesome/fonts/*.{eot,svg,ttf,woff}')
+    return gulp.src('node_modules/font-awesome/fonts/*.{eot,svg,ttf,woff,woff2}')
      .pipe(gulp.dest(paths.dist + '/fonts/'));
 });
 
@@ -96,4 +95,4 @@ gulp.task('clean', function (done) {
   $.del([paths.dist + '/', paths.tmp + '/'], done);
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'fontawesome', 'misc']);
+gulp.task('build', ['html', 'images','fonts', 'fontawesome', 'misc']);

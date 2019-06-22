@@ -32,8 +32,6 @@ angular.module('supportAdminApp')
                 );
             };
             DrivingTableService.retrieveLastRecord = function (searchCondition) {
-                var payload = JSON.stringify(searchCondition);
-
                 var request = $http({
                     method: 'GET',
                     url: API_URL + '/history/lastTrain' + '/' + searchCondition.page + '/' + searchCondition.pageSize,
@@ -43,7 +41,6 @@ angular.module('supportAdminApp')
                 });
                 return request.then(
                     function (response) {
-                        var data = JSON.stringify(response);
                         if (response.data.code === 0) {
                             return DrivingTableService.createRecord(response.data.data);
                         }

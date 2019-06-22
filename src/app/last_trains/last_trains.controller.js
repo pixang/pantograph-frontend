@@ -76,7 +76,6 @@ module.controller("LastTrainsController", ['$scope', '$state', '$rootScope', '$t
                     $scope.$broadcast('ReportDataUpdated');
                 },
                 function (err) {
-                    $alert.error("服务器出错", $scope);
                     $scope.formSearch.setLoading(false);
                 }
             )

@@ -5,7 +5,7 @@ var module = angular.module('supportAdminApp');
 module.controller("HistoryTrendController", ['$scope', '$state', '$rootScope', '$timeout', '$mdpDatePicker', '$mdpTimePicker', 'Alert', 'HistoryTrendService', 'constants',
     function ($scope, $state, $rootScope, $timeout, $mdpDatePicker, $mdpTimePicker, $alert, historyTrendService, $const) {
         $scope.selectedItem = null;
-        $scope.inputTrainId = null;
+        $scope.inputTrainId = "001002";
         $scope.querySearch = function (query) {
             return query ? $scope.trainIds.filter(createFilterFor(query)) : $scope.trainIds;
         };
@@ -46,9 +46,9 @@ module.controller("HistoryTrendController", ['$scope', '$state', '$rootScope', '
         $scope.formSearch = {
             startTime: new Date(),
             endTime: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-            trainId: null,
+            trainId: "001002",
 
-            archNum: null,
+            archNum: 1,
             selectType: null,
 
             isLoaded: false,
@@ -139,12 +139,9 @@ module.controller("HistoryTrendController", ['$scope', '$state', '$rootScope', '
                         $scope.chartData.zxValue.push(historyRecord[len - idx - 1].zxValue);
                         $scope.chartData.tempValue.push(historyRecord[len - idx - 1].tempValue);
                     }
-
                     $scope.$broadcast('ChartDataUpdated');
-
                 },
                 function (err) {
-                    $alert.error("服务器出错", $scope);
                     $scope.formSearch.setLoading(false);
                 }
             )
@@ -191,7 +188,6 @@ module.controller("HistoryTrendController", ['$scope', '$state', '$rootScope', '
                     $scope.$broadcast('ChartMhDataUpdated');
                 },
                 function (err) {
-                    $alert.error("服务器出错", $scope);
                     $scope.formSearch.setLoading(false);
                 }
             )

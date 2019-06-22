@@ -75,10 +75,6 @@ angular.module('supportAdminApp')
       });
       return request.then(
         function (response) {
-          var data = JSON.stringify(response);
-          if (!response) {
-            return response
-          }
           if (response.data.code == 0) {
             return true;
           }
@@ -103,22 +99,15 @@ angular.module('supportAdminApp')
       });
       return request.then(
         function (response) {
-          var data = JSON.stringify(response);
-          if (response.data.code == 0) {
             $cookies.remove('token');
             $cookies.remove('currentUser');
             $cookies.remove('currentUserRole');
             $cookies.remove('currentUserState');
-
+          if (response.data.code == 0) {
             $rootScope.$broadcast('UserChange', "logout");
-
             return true;
           }
           else {
-            $cookies.remove('token');
-            $cookies.remove('currentUser');
-            $cookies.remove('currentUserRole');
-            $cookies.remove('currentUserState');
             return response.data.msg;
           }
         },

@@ -12,8 +12,6 @@
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
     <link rel="stylesheet" href="app/bundle.css">
     <link rel="stylesheet" href="app/vendor.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/viewerjs/1.0.0-rc.1/viewer.min.css">
-    <link href="http://vjs.zencdn.net/4.6.1/video-js.css" rel="stylesheet">
 
     <!-- build:css({.tmp/serve,src}) styles/app.css -->
     <!-- inject:css -->
@@ -31,19 +29,18 @@
 
     <!-- build:js(.tmp/serve) scripts/vendor.js -->
     <script src="app/bundle.js" charset="utf8"></script>
+
+    <script type="text/javascript" src="scripts/moment.min.js"></script>
+    <script type="text/javascript" src="scripts/zh-cn.js"></script>
+    <script type="text/javascript" src="scripts/highcharts.js"></script>
+    <script type="text/javascript" src="scripts/exporting.js"></script>
+    <script type="text/javascript" src="scripts/offline-exporting.js"></script>
+    <script type="text/javascript" src="scripts/viewer.min.js"></script>
+    <script type="text/javascript" src="scripts/tiff.min.js"></script>
+    <script type="text/javascript" src="scripts/video.js"></script>
+
     <!-- endbuild -->
 
-    <!-- require dependencies from CDN -->
-    <script src="app/bundle.js" charset="utf8"></script>
-    <script src="https://cdn.bootcss.com/moment.js/2.13.0/moment.min.js"></script>
-    <script src="https://cdn.bootcss.com/moment.js/2.13.0/locale/zh-cn.js"></script>
-    <script type="text/javascript" src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
-    <script type="text/javascript" src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
-    <script type="text/javascript" src="https://img.hcharts.cn/highcharts/modules/offline-exporting.js"></script>
-    <script src="https://cdn.bootcss.com/viewerjs/1.0.0-rc.1/viewer.min.js"></script>
-    <!--<script src="http://192.168.3.72:8080/Downloads/tiff.min.js"></script>-->
-    <script src="http://vjs.zencdn.net/4.6.1/video.js"></script>
-    <!-- <script type="text/javascript" src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script> -->
 
     <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
     <!-- inject:js -->

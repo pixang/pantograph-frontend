@@ -133,7 +133,6 @@ module.controller('UserEditDialogController', [
                         }
                     },
                     function (err) {
-                        $alert.error("服务器发生错误", $scope);
                         $scope.form.setLoading(false);
                     }
                 );

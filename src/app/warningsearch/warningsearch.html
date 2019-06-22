@@ -59,7 +59,7 @@
                                                              md-search-text-change="searchInputChange(inputTrainId)"
                                                              md-items="trainId in querySearch(inputTrainId)"
                                                              md-item-text="trainId" md-floating-label="列车号"
-                                                             md-require-match>
+                                                             md-require-match ng-disabled="formSearch.isLoading">
                                                 <md-item-template>
                                                     <span md-highlight-text="inputTrainId">{{trainId}}</span>
                                                 </md-item-template>

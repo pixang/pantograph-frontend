@@ -10,9 +10,6 @@ module.controller('MainController', [
         $scope.trainsInfo = [];
         $scope.currentUser = {};
 
-        $scope.currentUser.username = $cookies.get('currentUser');
-        $scope.currentUser.userrole = $cookies.get('currentUserRole');
-
         $scope.line = $const.LINE;
         $scope.lightStatus = [];
 
@@ -139,7 +136,6 @@ module.controller('MainController', [
                         sessionStorage.setItem('isRunning', "Y");
                     },
                     function (err) {
-                        $alert.error(err.error, $scope);
                     }
                 )
             }
@@ -201,8 +197,8 @@ module.controller('MainController', [
             // }
         };
         $scope.$on("UserChange",
-            function (event, user) {
-                if (user == "logout") {
+            function (event, msg) {
+                if (msg == "logout") {
                     $scope.currentUser.username = null;
                     $scope.currentUser.userrole = null;
                     return
@@ -224,7 +220,6 @@ module.controller('MainController', [
                 $scope.showDashboard = true;
                 if (msg == "loginsuccess") {
                     $scope.getTrainInfo();
-
                     $scope.currentUser.username = $cookies.get('currentUser');
                     $scope.currentUser.userrole = parseInt($cookies.get('currentUserRole'));
                 }
@@ -388,6 +383,9 @@ module.controller('MainController', [
         };
 
         angular.element(document).ready(function () {
+            if ($location.url() === '/index/main') {
+                $rootScope.$broadcast("ShowDashboard");
+            }
             $('[data-toggle="tooltip"]').tooltip();
 
             $(window).bind("resize scroll", function () {
@@ -402,9 +400,6 @@ module.controller('MainController', [
             }
 
             $interval(function () {
-                if (!$cookies.get('currentUser')) {
-                    return
-                }
                 var date = new Date();
                 var h = date.getHours() < 10 ? '0' + (date.getHours()) : '' + (date.getHours());
                 var m = date.getMinutes() < 10 ? '0' + (date.getMinutes()) : '' + (date.getMinutes());
@@ -420,7 +415,7 @@ module.controller('MainController', [
             }, 60 * 1000);
 
             if ($location.url() == '/index/main') {
-                $rootScope.$broadcast("ShowDashboard", "wusuowei");
+                $rootScope.$broadcast("ShowDashboard");
             }
             $rootScope.$broadcast('ResizePage');
         });
@@ -428,7 +423,6 @@ module.controller('MainController', [
         //fix height
         function fix_height() {
             var windowHeigh = $(window).height();
-            var navbarHeigh = $('#sidebar-wrapper').height();
             var extraHeight = 162;
             if ($location.url() === '/index/lasttrains') {
                 extraHeight = 187;
@@ -524,12 +518,8 @@ module.controller('CurrentdayDialog', [
                     $scope.$broadcast('CurrentDayRecordUpdate');
                 },
                 function (err) {
-                    $timeout(function () {
-                        $alert.error(err.error, $scope);
-                        $scope.exception = true;
-
-                        $scope.form.setLoading(false);
-                    }, 1000);
+                    $scope.exception = true;
+                    $scope.form.setLoading(false);
                 }
             )
         };
@@ -711,11 +701,7 @@ module.controller('MainDialogController', [
 
                 },
                 function (err) {
-
-                    $timeout(function () {
-                        $scope.formSearch.setLoading(false);
-                    }, 1000);
-                    //        
+                    $scope.formSearch.setLoading(false);
                 }
             )
         };
@@ -849,9 +835,7 @@ module.controller('WarningDialogController', [
                     $scope.form.setLoading(false);
                 },
                 function (err) {
-                    $timeout(function () {
-                        $scope.form.setLoading(false);
-                    }, 1000);
+                    $scope.form.setLoading(false);
                 })
         };
         $scope.warningRecords = {};
@@ -921,12 +905,8 @@ module.controller('PasswordChangeController', [
                     }
                 },
                 function (err) {
-
-                    $timeout(function () {
-                        $alert.error(err.error, $scope);
-                        $scope.exception = true;
-                        $scope.form.setLoading(false);
-                    }, 1000);
+                     $scope.exception = true;
+                     $scope.form.setLoading(false);
                 }
             )
         };

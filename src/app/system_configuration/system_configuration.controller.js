@@ -70,6 +70,7 @@ module.controller("SystemConfiguration", ['$scope', '$state', '$rootScope', '$ti
                     $scope.formSearch.setLoading(false);
                 },
                 function (err) {
+                    $alert.clear();
                     $alert.error("服务器出错，未能保存成功");
                     $scope.formSearch.setLoading(false);
                 }

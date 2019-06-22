@@ -74,7 +74,6 @@ module.controller("YjLoseController", ['$scope', '$state', '$rootScope', '$timeo
                     $scope.formSearch.setLoading(false);
                 },
                 function (err) {
-                    $alert.error("服务器出错", $scope);
                     $scope.formSearch.setLoading(false);
                 }
             )
