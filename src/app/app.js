@@ -31,7 +31,7 @@ angular.module('supportAdminApp', [
                     $location.path('/auth');
                     $timeout(function () {
                         $rootScope.$broadcast("ResizeAuthPage", "fromlocation");
-                    }, 100);
+                    }, 500);
                 } else if ($location.path() == '/index/main') {
                     $rootScope.$broadcast("ShowDashboard", "login state failed");
                 }
@@ -111,8 +111,6 @@ angular.module('supportAdminApp', [
                 controller: 'UserMangae',
                 data: { pageTitle: 'UserMangae' }
             });
-
-
         $urlRouterProvider.otherwise('/index/main');
         // $locationProvider.html5Mode(true).hashPrefix('!');
     });

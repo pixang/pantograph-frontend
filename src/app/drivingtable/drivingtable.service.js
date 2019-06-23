@@ -3,7 +3,6 @@
 angular.module('supportAdminApp')
     .factory('DrivingTableService', ['$log', '$q', '$http', 'constants',
         function ($log, $q, $http, $const) {
-
             var API_URL = $const.API_URL;
 
             var DrivingTableService = {};
@@ -147,7 +146,6 @@ angular.module('supportAdminApp')
                 angular.forEach(data, function (elem) {
                     result = result.concat(DrivingTableService.transferDetailResult(elem));
                 });
-
                 return result;
             };
 
@@ -178,9 +176,7 @@ angular.module('supportAdminApp')
                 return records;
             };
 
-
             DrivingTableService.retrieveImgRecord = function (searchCondition) {
-                var payload = JSON.stringify(searchCondition);
                 var request = $http({
                     method: 'GET',
                     url: API_URL + '/report/image/' + searchCondition.trainOnlyId + '/' + searchCondition.archNum,

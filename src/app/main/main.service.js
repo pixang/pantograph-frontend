@@ -104,7 +104,6 @@ angular.module('supportAdminApp')
 
 
             MainService.retrieveAbnormalState = function (trainOnlyId) {
-
                 var request = $http({
                     method: 'GET',
                     url: API_URL + '/index/warn' + '/' + trainOnlyId,
@@ -151,7 +150,6 @@ angular.module('supportAdminApp')
                         else {
                             return response.data.msg;
                         }
-                        return response.data;
                     },
                     function (error) {
                         return $q.reject({ error: error });
@@ -230,7 +228,6 @@ angular.module('supportAdminApp')
             function fix_number(x) {
                 return Number.parseFloat(x).toFixed(2);
             }
-
 
             return MainService;
         }

@@ -7,9 +7,4 @@ angular.module('supportAdminApp')
     $scope.forceStateProjects = function () {
       $state.go('index.projects');
     };
-    angular.element(document).ready(function() {
-      console.log("resizepage from nav");
-      $rootScope.$broadcast('ResizePage');
-
-    });
 }]);

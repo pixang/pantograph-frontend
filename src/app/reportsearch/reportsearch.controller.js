@@ -10,9 +10,6 @@ module.controller("ReportSearchController", ['$scope', '$state', '$rootScope', '
                 $('.footable-report-search').footable({ paginate: false });
                 $('.footable-report-search').trigger('footable_redraw');
             }, 100);
-            $timeout(function () {
-                $rootScope.$broadcast('ResizePage');
-            }, 400);
         });
 
         $scope.selectedItem = null;
@@ -145,7 +142,6 @@ module.controller("ReportSearchController", ['$scope', '$state', '$rootScope', '
             $scope.formSearch.selectType = searchCondition.selectType;
             searchCondition.page = parseInt($scope.pagination.current);
             searchCondition.size = parseInt($scope.pagination.pageSize);
-
 
             $scope.formSearch.setLoaded(false);
             $scope.formSearch.setLoading(true);
@@ -300,7 +296,6 @@ module.controller("ReportSearchController", ['$scope', '$state', '$rootScope', '
         angular.element(document).ready(function () {
             $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
-            $rootScope.$broadcast('ResizePage');
         });
     }]);
 

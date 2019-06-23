@@ -200,9 +200,6 @@ module.controller("HistoryTrendController", ['$scope', '$state', '$rootScope', '
                 $scope.formSearch.setLoaded(true);
                 $scope.formSearch.setLoading(false);
             }
-            $timeout(function () {
-                $rootScope.$broadcast('ResizePage');
-            }, 100);
         });
         $scope.$on('ChartMhDataUpdated', function (event) {
             $scope.loadTick_mh++;
@@ -210,9 +207,6 @@ module.controller("HistoryTrendController", ['$scope', '$state', '$rootScope', '
                 $scope.formSearch.setLoaded(true);
                 $scope.formSearch.setLoading(false);
             }
-            $timeout(function () {
-                $rootScope.$broadcast('ResizePage');
-            }, 100);
         });
         $scope.$on('ChartMhDataUpdated', function (event) {
             var mh = new Highcharts.Chart({
@@ -322,6 +316,5 @@ module.controller("HistoryTrendController", ['$scope', '$state', '$rootScope', '
         angular.element(document).ready(function () {
             $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
-            $rootScope.$broadcast('ResizePage');
         });
     }]);

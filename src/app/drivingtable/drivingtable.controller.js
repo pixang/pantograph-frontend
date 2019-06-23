@@ -13,13 +13,10 @@ module.controller("DrivingTableController", ['$scope', '$state', '$rootScope', '
         $scope.location = true;
 
         $scope.$on('ReportDataUpdated', function (event) {
+            var tableElem = $('.footable-driving-table');
+            tableElem.footable({ paginate: false });
             $timeout(function () {
-                var tableElem = $('.footable-driving-table');
-                tableElem.footable({ paginate: false });
                 tableElem.trigger('footable_redraw');
-
-                $rootScope.$broadcast('ResizePage');
-
             }, 100);
         });
 
@@ -60,19 +57,16 @@ module.controller("DrivingTableController", ['$scope', '$state', '$rootScope', '
             searchCondition.page = parseInt($scope.pagination.current);
             searchCondition.pageSize = parseInt($scope.pagination.pageSize);
 
-
             $scope.formSearch.setLoaded(false);
             $scope.formSearch.setLoading(true);
             drivingTableService.retrieveRecord(searchCondition).then(
                 function (data) {
                     if (typeof (data) == "string") {
                         $alert.error(data);
-
                         $scope.formSearch.setLoading(false);
                         return
                     }
                     $scope.reportRecords = data.result;
-
 
                     $scope.formSearch.setLoaded(true);
                     $scope.formSearch.setLoading(false);
@@ -180,7 +174,7 @@ module.controller("DrivingTableController", ['$scope', '$state', '$rootScope', '
             pageSize: $scope.pageSizes[1].value,
         };
         $scope.setCurrent = function (num) {
-            if (num == $scope.pagination.current || num == 0 || num == ($scope.pagination.totalPages + 1)) {
+            if (num == '...' || num == $scope.pagination.current || num == 0 || num == ($scope.pagination.totalPages + 1)) {
                 return
             }
             $scope.pagination.current = num;
@@ -246,8 +240,6 @@ module.controller("DrivingTableController", ['$scope', '$state', '$rootScope', '
             $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
             $scope.search();
-            $rootScope.$broadcast('ResizePage');
-
         });
     }]
 );
@@ -274,9 +266,9 @@ module.controller('DetailDataController', [
         };
 
         $scope.$on('DetailRecordUpdate', function (event) {
+            var dialog = $('.footable-for-dialog');
+            dialog.footable({ paginate: false });
             $timeout(function () {
-                var dialog = $('.footable-for-dialog');
-                dialog.footable({ paginate: false });
                 dialog.trigger('footable_redraw');
             }, 100);
         });
@@ -293,7 +285,6 @@ module.controller('DetailDataController', [
                         $alert.error(data, $scope);
                         $scope.form.setLoading(false);
                         $scope.form.setLoaded(false);
-
                         return
                     }
                     $scope.detailRecords = data;
@@ -495,7 +486,6 @@ module.controller('ArcImageController', [
 module.controller('TiffViewerController', [
     '$scope', '$rootScope', '$uibModalInstance', 'tiffAddr',
     function ($scope, $rootScope, $modalInstance, tiffAddr) {
-
         $scope.cancel = function () {
             $modalInstance.close();
         };

@@ -10,9 +10,6 @@ module.controller("WarningSearchController", ['$scope', '$state', '$rootScope', 
                 $('.footable-report-search').footable({ paginate: false });
                 $('.footable-report-search').trigger('footable_redraw');
             }, 100);
-            $timeout(function () {
-                $rootScope.$broadcast('ResizePage');
-            }, 400);
         });
 
         //radio box
@@ -325,7 +322,6 @@ module.controller("WarningSearchController", ['$scope', '$state', '$rootScope', 
             $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
             $scope.search();
-            $rootScope.$broadcast('ResizePage');
         });
     }]);
 

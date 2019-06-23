@@ -83,8 +83,6 @@
   },
   "scripts": {
     "clean": "gulp clean",
-    "build": "gulp build",
-    "start": "gulp publish",
-    "test": "gulp protractor"
+    "build": "gulp build"
   }
 }

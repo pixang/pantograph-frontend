@@ -4,7 +4,6 @@ var module = angular.module('supportAdminApp');
 
 module.controller("LastTrainsController", ['$scope', '$state', '$rootScope', '$timeout', '$mdpDatePicker', '$mdpTimePicker', '$uibModal', 'Alert', 'constants', 'DrivingTableService',
     function ($scope, $state, $rootScope, $timeout, $mdpDatePicker, $mdpTimePicker, $modal, $alert, $const, drivingTableService) {
-
         $scope.location = false;
 
         $scope.$on('ReportDataUpdated', function (event) {
@@ -13,9 +12,6 @@ module.controller("LastTrainsController", ['$scope', '$state', '$rootScope', '$t
                 tableElem.footable({ paginate: false });
                 tableElem.trigger('footable_redraw');
             }, 100);
-            $timeout(function () {
-                $rootScope.$broadcast('ResizePage');
-            }, 900);
         });
 
         $scope.pageSizes = [
@@ -168,7 +164,7 @@ module.controller("LastTrainsController", ['$scope', '$state', '$rootScope', '$t
             pageSize: $scope.pageSizes[1].value,
         };
         $scope.setCurrent = function (num) {
-            if (num == $scope.pagination.current || num == 0 || num == ($scope.pagination.totalPages + 1)) {
+            if (num == '...' || num == $scope.pagination.current || num == 0 || num == ($scope.pagination.totalPages + 1)) {
                 return
             }
             $scope.pagination.current = num;
@@ -234,7 +230,6 @@ module.controller("LastTrainsController", ['$scope', '$state', '$rootScope', '$t
             $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
             $scope.search();
-            $rootScope.$broadcast('ResizePage');
         });
     }]
 );

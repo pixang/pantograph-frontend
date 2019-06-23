@@ -21,6 +21,8 @@ gulp serve
 
 ## Fallback instruction in case the npm scripts fail
 
+- Attention:  run ```gulp serve``` before ```gulp build```
+
 ### Install global dependencies
 
 ```npm install -g gulp@3.8.10```

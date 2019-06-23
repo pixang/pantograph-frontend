@@ -5,11 +5,9 @@ angular.module('supportAdminApp')
         function ($log, $q, $http, $const) {
             // local dev
             var API_URL = $const.API_URL;
-
             var ReportSearchService = {};
 
             ReportSearchService.retrieveRecord = function (searchCondition) {
-
                 var payload = JSON.stringify(searchCondition);
 
                 var request = $http({

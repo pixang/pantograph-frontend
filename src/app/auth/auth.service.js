@@ -45,10 +45,6 @@ angular.module('supportAdminApp')
       });
       return request.then(
         function (response) {
-          var data = JSON.stringify(response);
-          if (response == null) {
-            return
-          }
           if (response.data && response.data.code == 200) {
             return response.data.data;
           }
@@ -64,7 +60,6 @@ angular.module('supportAdminApp')
     authService.signup = function (userInfo) {
       var payload = JSON.stringify(userInfo);
       var $http = $injector.get('$http');
-
       var request = $http({
         method: 'POST',
         url: API_URL + '/user/register',
@@ -88,8 +83,11 @@ angular.module('supportAdminApp')
       );
     };
     authService.logout = function (token) {
+      $cookies.remove('token');
+      $cookies.remove('currentUser');
+      $cookies.remove('currentUserRole');
+      $cookies.remove('currentUserState');
       var $http = $injector.get('$http');
-
       var request = $http({
         method: 'GET',
         url: API_URL + '/user/logout',
@@ -99,10 +97,6 @@ angular.module('supportAdminApp')
       });
       return request.then(
         function (response) {
-            $cookies.remove('token');
-            $cookies.remove('currentUser');
-            $cookies.remove('currentUserRole');
-            $cookies.remove('currentUserState');
           if (response.data.code == 0) {
             $rootScope.$broadcast('UserChange', "logout");
             return true;
@@ -132,8 +126,6 @@ angular.module('supportAdminApp')
       }
       return window.atob(output);
     }
-
-
     return authService;
   }
-  ]);
+]);

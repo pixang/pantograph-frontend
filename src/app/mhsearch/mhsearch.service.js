@@ -5,12 +5,9 @@ angular.module('supportAdminApp')
         function ($log, $q, $http, $const) {
             // local dev
             var API_URL = $const.API_URL;
-            var trainState = $const.TRAIN_STATE;
-
             var HistoryTrendService = {};
 
             HistoryTrendService.retrieveRecord = function (searchCondition) {
-
                 var payload = JSON.stringify(searchCondition);
 
                 var request = $http({
@@ -23,7 +20,6 @@ angular.module('supportAdminApp')
                 });
                 return request.then(
                     function (response) {
-                        var data = JSON.stringify(response);
                         if (response.data.code == 0) {
                             return response.data.data;
                         }
@@ -65,7 +61,6 @@ angular.module('supportAdminApp')
                 );
             };
             HistoryTrendService.retrieveYjLoseRecord = function (searchCondition) {
-
                 var payload = JSON.stringify(searchCondition);
 
                 var request = $http({
@@ -78,7 +73,6 @@ angular.module('supportAdminApp')
                 });
                 return request.then(
                     function (response) {
-                        var data = JSON.stringify(response);
                         if (response.data.code == 0) {
                             return response.data.data;
                         }

@@ -4,7 +4,6 @@ var module = angular.module('supportAdminApp');
 
 module.controller("SystemConfiguration", ['$scope', '$state', '$rootScope', '$timeout', '$mdpDatePicker', '$mdpTimePicker', 'Alert', 'SystemConfigurationService',
     function ($scope, $state, $rootScope, $timeout, $mdpDatePicker, $mdpTimePicker, $alert, systemConfigurationService) {
-
         $scope.formSearch = {
             isLoaded: false,
             isLoading: false,
@@ -29,7 +28,6 @@ module.controller("SystemConfiguration", ['$scope', '$state', '$rootScope', '$ti
             systemConfigurationService.retrieveThresholdData().then(
                 function (data) {
                     $scope.formForThreshold = data;
-
 
                     $scope.formSearch.setLoaded(true);
                     $scope.formSearch.setLoading(false);
@@ -80,7 +78,7 @@ module.controller("SystemConfiguration", ['$scope', '$state', '$rootScope', '$ti
         $scope.searchThresholdData();
 
         $scope.backFromConfigurationPage = function () {
-            $rootScope.$broadcast("ShowDashboard", "wusuowei");
+            $rootScope.$broadcast("ShowDashboard");
             $state.go('index.main');
         };
 
@@ -90,6 +88,5 @@ module.controller("SystemConfiguration", ['$scope', '$state', '$rootScope', '$ti
 
         angular.element(document).ready(function () {
             $rootScope.$broadcast("HideDashboard");
-            $rootScope.$broadcast('ResizePage');
         });
     }]);

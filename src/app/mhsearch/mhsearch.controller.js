@@ -9,9 +9,6 @@ module.controller("MhSearchController", ['$scope', '$state', '$rootScope', '$tim
                 $('.footable-report-search').footable({ paginate: false });
                 $('.footable-report-search').trigger('footable_redraw');
             }, 100);
-            $timeout(function () {
-                $rootScope.$broadcast('ResizePage');
-            }, 400);
         });
 
         $scope.selectedItem = null;
@@ -239,6 +236,5 @@ module.controller("MhSearchController", ['$scope', '$state', '$rootScope', '$tim
         angular.element(document).ready(function () {
             $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
-            $rootScope.$broadcast('ResizePage');
         });
     }]);

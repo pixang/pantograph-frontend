@@ -4,7 +4,6 @@ var module = angular.module('supportAdminApp');
 
 module.controller("YjLoseController", ['$scope', '$state', '$rootScope', '$timeout', '$mdpDatePicker', '$mdpTimePicker', 'Alert', 'HistoryTrendService', 'constants',
     function ($scope, $state, $rootScope, $timeout, $mdpDatePicker, $mdpTimePicker, $alert, historyTrendService, $const) {
-
         // fixed data
         $scope.line = $const.LINE;
         $scope.station = $const.STATION;
@@ -80,12 +79,6 @@ module.controller("YjLoseController", ['$scope', '$state', '$rootScope', '$timeo
         };
 
         $scope.$on('ChartDataUpdated', function (event) {
-            $timeout(function () {
-                $rootScope.$broadcast('ResizePage');
-            }, 400);
-        });
-
-        $scope.$on('ChartDataUpdated', function (event) {
             var yj = new Highcharts.Chart({
                 chart: {
                     renderTo: 'yj',
@@ -123,6 +116,5 @@ module.controller("YjLoseController", ['$scope', '$state', '$rootScope', '$timeo
         angular.element(document).ready(function () {
             $rootScope.$broadcast("HideDashboard");
             $('.footable').footable({ paginate: false });
-            $rootScope.$broadcast('ResizePage');
         });
     }]);
