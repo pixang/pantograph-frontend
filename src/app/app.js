@@ -33,7 +33,7 @@ angular.module('supportAdminApp', [
                         $rootScope.$broadcast("ResizeAuthPage", "fromlocation");
                     }, 500);
                 } else if ($location.path() == '/index/main') {
-                    $rootScope.$broadcast("ShowDashboard", "login state failed");
+                    $rootScope.$broadcast("ShowDashboard");
                 }
             });
         }
